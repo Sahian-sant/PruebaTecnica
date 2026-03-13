@@ -26,6 +26,7 @@ public class UserWebService {
 	@Autowired
 	private UserService userService;
 
+	//http://localhost:9000/users?filter=name+co+user&sortedBy=name
 	@GetMapping
 	public ResponseEntity<?> obtenerUsuarios(
 			@RequestParam(name = "filter", required = false) String filter,
@@ -48,23 +49,7 @@ public class UserWebService {
 		}
 	}
 
-	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestParam(name = "taxId") String taxId,
-			@RequestParam(name = "password") String password) {
-
-		try {
-			String validado = userService.login(taxId, password);
-
-			if (validado.equals("OK")) {
-				return new ResponseEntity<String>("se logro hacer login", HttpStatus.OK);
-			} else {
-				return new ResponseEntity<String>("datos incorrectos o no existe", HttpStatus.UNAUTHORIZED);
-			}
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Error en el login: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
+	//http://localhost:9000/users
 	@PostMapping
 	public ResponseEntity<?> crearUsuario(@RequestBody User user) {
 		try {
@@ -84,6 +69,8 @@ public class UserWebService {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//http://localhost:9000/users/{id}
 	@PatchMapping("/{id}")
 	public ResponseEntity<?> actualizarUsuario(@PathVariable("id") UUID id, @RequestBody User user) {
 
@@ -103,7 +90,8 @@ public class UserWebService {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+    //http://localhost:9000/users/{id}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminarUsuario(@PathVariable("id") UUID id) {
 
@@ -121,6 +109,23 @@ public class UserWebService {
 
 			return new ResponseEntity<String>("Error al eliminar usuario: " + e.getMessage(),
 					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	//http://127.0.0.1:9000/users/login?taxId=   &password=
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestParam(name = "taxId") String taxId,
+			@RequestParam(name = "password") String password) {
+
+		try {
+			String validado = userService.login(taxId, password);
+
+			if (validado.equals("OK")) {
+				return new ResponseEntity<String>("se logro hacer login", HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("datos incorrectos o no existe", HttpStatus.UNAUTHORIZED);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Error en el login: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

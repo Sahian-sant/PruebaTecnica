@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "ad5341a3-f825-4255-8acf-975c9da4fb33",
+    "name": "Consuta de prueba",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45138184"
+  },
+  "item": [
+    {
+      "name": "1. Listar Usuarios",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/users?filter=name+co+user&sortedBy=name",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "users"
+          ],
+          "query": [
+            {
+              "key": "filter",
+              "value": "name+co+user"
+            },
+            {
+              "key": "sortedBy",
+              "value": "name"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Crear Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Nuevo\",\r\n    \"email\": \"nuevo@mail.com\",\r\n    \"phone\": \"5512345679\",\r\n    \"tax_id\": \"ABCD123456XYZ\",\r\n    \"password\": \"Lacontraseñaeslasiguente\",\r\n    \"addresses\": [\r\n        {\r\n            \"name\": \"casa\",\r\n            \"street\": \"Calle 123\",\r\n            \"countryCode\": \"MX\"\r\n        }\r\n    ]\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Actualizar(se necesita obtener el id  que  quiere actualizar)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Nuevo Usuario\",\r\n    \"email\": \"nuevo@mail.com\",\r\n    \"phone\": \"5512345678\",\r\n    \"taxId\": \"ABCD123456XYZ\",\r\n    \"password\": \"Lacontraseñaeslasiguente\",\r\n    \"addresses\": [\r\n        {\r\n            \"name\": \"casa\",\r\n            \"street\": \"Calle 123\",\r\n            \"countryCode\": \"MX\"\r\n        }\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/users/550e8400-e29b-41d4-a716-44665544002",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "users",
+            "550e8400-e29b-41d4-a716-44665544002"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Eliminar  (se necesita el id a eliminar)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9000/users/afa0707e-16e1-4641-9c6b-7c307f4e988a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "users",
+            "afa0707e-16e1-4641-9c6b-7c307f4e988a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:9000/users/login?taxId=&password=",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "9000",
+          "path": [
+            "users",
+            "login"
+          ],
+          "query": [
+            {
+              "key": "taxId",
+              "value": ""
+            },
+            {
+              "key": "password",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
